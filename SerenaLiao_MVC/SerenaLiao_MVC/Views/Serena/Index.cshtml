@@ -1,0 +1,16 @@
+﻿@model IEnumerable<SerenaLiao_MVC.Models.Patients>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/_Custom.cshtml";
+}
+
+<div>
+@foreach (var item in Model)
+{
+    <div>@item.Patient_First_Name</div>
+    <div>@item.Patient_PostCode</div>
+}
+</div>
+
+

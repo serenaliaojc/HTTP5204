@@ -3,7 +3,7 @@
 *.csproj
 *.asax
 *.asax.cs
-/MVC0208/MVC0208/Scripts
+/*/*/Scripts
 
 
 ## Ignore Visual Studio temporary files, build results, and
