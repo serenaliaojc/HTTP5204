@@ -1,0 +1,97 @@
+﻿@model SerenaLiao_MVC.Models.Patients
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Layout/_Custom.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Patients</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient_Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient_Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient_Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient_Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient_First_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient_First_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient_Last_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient_Last_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient_Date_Of_Birth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient_Date_Of_Birth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient_Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient_Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient_Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient_Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient_Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient_Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient_PostCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient_PostCode)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
