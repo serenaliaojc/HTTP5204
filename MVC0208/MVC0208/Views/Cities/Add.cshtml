@@ -1,0 +1,61 @@
+﻿@model MVC0208.Models.City
+@{
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add</title>
+</head>
+<body>
+    <h2>Add</h2>
+
+    @using (Html.BeginForm("Add", "Cities"))
+    {
+        // action = "~/city/add"
+        <div>
+            <div>
+                @Html.LabelFor(m => m.Name)
+            </div>
+            <div>
+                @Html.TextBoxFor(m => m.Name)
+                @Html.ValidationMessageFor(m => m.Name)
+            </div>
+        </div>
+        <div>
+            <div>
+                @Html.LabelFor(m => m.Population)
+            </div>
+            <div>
+                @Html.TextBoxFor(m => m.Population)
+                @Html.ValidationMessageFor(m => m.Population)
+            </div>
+        </div>
+        <div>
+            <div>
+                @Html.LabelFor(m => m.Mayor)
+            </div>
+            <div>
+                @Html.TextBoxFor(m => m.Mayor)
+                @Html.ValidationMessageFor(c => c.Mayor)
+            </div>
+        </div>
+        <div>
+            <div>
+                @Html.LabelFor(m => m.Country_Code)
+            </div>
+            <div>
+                @Html.TextBoxFor(m => m.Country_Code)
+            </div>
+        </div>
+        <div>
+            <input type="submit" value="Create" />
+        </div>
+    }
+</body>
+</html>
