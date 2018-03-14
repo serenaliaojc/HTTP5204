@@ -37,6 +37,7 @@ namespace SerenaLiao_MVC.Models
         [Required(ErrorMessage = "Please enter your date of birth.")]
         [Display(Name = "Date of Birth")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Patient_Date_Of_Birth { get; set; }
 
         [Required(ErrorMessage = "Please select your gender.")]

@@ -5,11 +5,21 @@
     Layout = "~/Views/Layout/_Custom.cshtml";
 }
 
+<h2>Patients List</h2>
+<p>@Html.ActionLink("Add Patient", "Add", "Serena")</p>
 <div>
 @foreach (var item in Model)
 {
-    <div>@item.Patient_First_Name</div>
-    <div>@item.Patient_PostCode</div>
+    <div>
+        <h3>@item.Patient_Id - @item.Patient_First_Name @item.Patient_Last_Name</h3>
+        <p>@item.Patient_Date_Of_Birth</p>
+        <p>@item.Patient_Gender</p>
+        <p>@item.Patient_Email</p>
+        <p>@item.Patient_Phone</p>
+        <p>@item.Patient_Address , @item.Patient_PostCode</p>
+        <span>@Html.ActionLink("Edit", "Update", "Serena", new { id = item.Patient_Id }, null)</span>
+        <span>@Html.ActionLink("Delete", "Delete", "Serena", new { id = item.Patient_Id }, null)</span>
+    </div>
 }
 </div>
 
