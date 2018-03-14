@@ -166,7 +166,7 @@ namespace SerenaLiao_MVC.Controllers
         {
             try
             {
-                int id = Convert.ToInt32(form["patient_id"]);
+                int id = Convert.ToInt32(form["Patient_Id"]);
                 Patients patient = db.Patients.Find(id);
                 db.Entry(patient).State = System.Data.Entity.EntityState.Modified;
                 db.Patients.Remove(patient);

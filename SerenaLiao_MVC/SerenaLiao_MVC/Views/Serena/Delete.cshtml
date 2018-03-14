@@ -13,6 +13,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Patient_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient_Id)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Patient_Email)
         </dt>
 
@@ -89,6 +97,7 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
+        @Html.HiddenFor(model => model.Patient_Id)
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Index")
