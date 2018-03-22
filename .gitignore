@@ -4,6 +4,7 @@
 *.asax
 *.asax.cs
 /*/*/Scripts
+/anythingProject
 
 
 ## Ignore Visual Studio temporary files, build results, and
