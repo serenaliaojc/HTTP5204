@@ -5,9 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="83cd13214dc94fb7acb4478c4e0ca484" Name="Diagram1">
-        <EntityTypeShape EntityType="ExampleModel.City" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExampleModel.City" Width="1.5" PointX="4.375" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ExampleModel.Country" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="ExampleModel.country_city_cc_fk" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ExampleModel.sjghel_doctors" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ExampleModel.sjghel_patients" Width="1.5" PointX="3.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

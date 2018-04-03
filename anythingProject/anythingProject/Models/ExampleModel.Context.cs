@@ -27,5 +27,7 @@ namespace anythingProject.Models
     
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<sjghel_doctors> sjghel_doctors { get; set; }
+        public virtual DbSet<sjghel_patients> sjghel_patients { get; set; }
     }
 }

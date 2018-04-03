@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ExampleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ExampleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="Id" />
@@ -25,6 +25,28 @@
           <Property Name="Continent" Type="varchar" MaxLength="50" />
           <Property Name="Established" Type="datetime" />
         </EntityType>
+        <EntityType Name="sjghel_doctors">
+          <Key>
+            <PropertyRef Name="doctor_id" />
+          </Key>
+          <Property Name="doctor_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="doctor_name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sjghel_patients">
+          <Key>
+            <PropertyRef Name="patient_id" />
+          </Key>
+          <Property Name="patient_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="patient_email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="patient_password" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="patient_first_name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="patient_last_name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="patient_date_of_birth" Type="date" Nullable="false" />
+          <Property Name="patient_gender" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="patient_phone" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="patient_address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="patient_postcode" Type="char" MaxLength="6" />
+        </EntityType>
         <Association Name="country_city_cc_fk">
           <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
           <End Role="City" Type="Self.City" Multiplicity="*" />
@@ -40,13 +62,14 @@
         <EntityContainer Name="ExampleModelStoreContainer">
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sjghel_doctors" EntityType="Self.sjghel_doctors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sjghel_patients" EntityType="Self.sjghel_patients" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="country_city_cc_fk" Association="Self.country_city_cc_fk">
             <End Role="Country" EntitySet="Country" />
             <End Role="City" EntitySet="City" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ExampleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -91,7 +114,31 @@
             <End Role="Country" EntitySet="Countries" />
             <End Role="City" EntitySet="Cities" />
           </AssociationSet>
+          <EntitySet Name="sjghel_doctors" EntityType="ExampleModel.sjghel_doctors" />
+          <EntitySet Name="sjghel_patients" EntityType="ExampleModel.sjghel_patients" />
         </EntityContainer>
+        <EntityType Name="sjghel_doctors">
+          <Key>
+            <PropertyRef Name="doctor_id" />
+          </Key>
+          <Property Name="doctor_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="doctor_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sjghel_patients">
+          <Key>
+            <PropertyRef Name="patient_id" />
+          </Key>
+          <Property Name="patient_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="patient_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="patient_password" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="patient_first_name" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="patient_last_name" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="patient_date_of_birth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="patient_gender" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="patient_phone" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="patient_address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="patient_postcode" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -117,6 +164,30 @@
                 <ScalarProperty Name="Population" ColumnName="Population" />
                 <ScalarProperty Name="Continent" ColumnName="Continent" />
                 <ScalarProperty Name="Established" ColumnName="Established" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sjghel_doctors">
+            <EntityTypeMapping TypeName="ExampleModel.sjghel_doctors">
+              <MappingFragment StoreEntitySet="sjghel_doctors">
+                <ScalarProperty Name="doctor_name" ColumnName="doctor_name" />
+                <ScalarProperty Name="doctor_id" ColumnName="doctor_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sjghel_patients">
+            <EntityTypeMapping TypeName="ExampleModel.sjghel_patients">
+              <MappingFragment StoreEntitySet="sjghel_patients">
+                <ScalarProperty Name="patient_postcode" ColumnName="patient_postcode" />
+                <ScalarProperty Name="patient_address" ColumnName="patient_address" />
+                <ScalarProperty Name="patient_phone" ColumnName="patient_phone" />
+                <ScalarProperty Name="patient_gender" ColumnName="patient_gender" />
+                <ScalarProperty Name="patient_date_of_birth" ColumnName="patient_date_of_birth" />
+                <ScalarProperty Name="patient_last_name" ColumnName="patient_last_name" />
+                <ScalarProperty Name="patient_first_name" ColumnName="patient_first_name" />
+                <ScalarProperty Name="patient_password" ColumnName="patient_password" />
+                <ScalarProperty Name="patient_email" ColumnName="patient_email" />
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
