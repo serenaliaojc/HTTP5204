@@ -1,0 +1,89 @@
+﻿@model IEnumerable<anythingProject.Models.sjghel_patients>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.patient_email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.patient_password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.patient_first_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.patient_last_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.patient_date_of_birth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.patient_gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.patient_phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.patient_address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.patient_postcode)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.patient_email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.patient_password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.patient_first_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.patient_last_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.patient_date_of_birth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.patient_gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.patient_phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.patient_address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.patient_postcode)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.patient_id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.patient_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.patient_id })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>
