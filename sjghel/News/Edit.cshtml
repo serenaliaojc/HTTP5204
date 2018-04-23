@@ -1,0 +1,87 @@
+﻿@model Sjghel_Project.Models.News
+
+@{
+    ViewBag.Title = "News Edit";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm("Edit", "News", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="offset-md-2">
+            <h3>Edit News Post</h3>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.news_id)
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(model => model.news_title, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.news_title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.news_title, "", new { @class = "form-text text-danger" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(model => model.news_post_time, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.news_post_time, new { htmlAttributes = new { @readonly="readonly", @class = "form-control-plaintext" } })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(model => model.news_edit_time, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.news_edit_time, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control-plaintext" } })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(model => model.news_brief, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+        <div class="col-md-6">
+            @Html.TextAreaFor(model => model.news_brief, new { @class = "form-control", @rows = "5" })
+            @Html.ValidationMessageFor(model => model.news_brief, "", new { @class = "form-text text-danger" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(model => model.news_content, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+        <div class="col-md-8">
+            @Html.TextAreaFor(model => model.news_content, new { @class = "form-control", @rows = "15" })
+            @Html.ValidationMessageFor(model => model.news_content, "", new { @class = "form-text text-danger" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(model => model.news_pic_path, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+        <div class="col-md-5">
+            @Html.TextBoxFor(model => model.news_pic_path, new { type = "hidden" })
+            <div class="input-group">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="news_pic" name="news_pic" />
+                    <label class="custom-file-label" for="news_pic">Choose file or leave blank for default</label>
+                </div>
+            </div>
+            <small id="file-hint" class="form-text">
+                We only support .jpg, .jpeg, .png, and .gif format.
+            </small>
+            <div class="edit-current-pic">
+                <p class="text-secondary">Current Picture:</p>
+                <img src="~/Images/News/@Model.news_pic_path" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="offset-md-2">
+            <input type="submit" value="Edit" class="btn btn-custom-blue" />
+        </div>
+    </div>
+}
+
+<div class="section-footer">
+    @Html.ActionLink("Back to List", "Admin")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

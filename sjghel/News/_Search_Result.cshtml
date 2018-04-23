@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Sjghel_Project.Models.News>
+
+@foreach (var item in Model)
+{
+    <div class="news-article col-md-4">
+        <img src="~/Images/News/@item.news_pic_path" />
+        <h3>@Html.ActionLink(item.news_title, "Details", new { id = item.news_id })</h3>
+        <p>@item.news_post_time</p>
+        <div>@item.news_brief</div>
+    </div>
+}
+

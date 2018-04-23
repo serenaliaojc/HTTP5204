@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Sjghel_Project.Models.News>
+
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h2>News Broad Admin</h2>
+
+<p>
+    @Html.ActionLink("Create New Post", "Create")
+</p>
+<table class="table table-responsive news-admin">
+    <tr>
+        <th scope="col">
+            ID
+        </th>
+        <th scope="col">
+            Image
+        </th>
+        <th scope="col">
+            News Info
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <th scope="row">
+            @Html.DisplayFor(modelItem => item.news_id)
+        </th>
+        <td>
+            <img src="~/Images/News/@item.news_pic_path" />
+        </td>
+        <td>
+            <p class="news-title">@Html.ActionLink(item.news_title, "Details", new { id = item.news_id })</p>
+            <div class="time-info">
+                <p>Post Time:@Html.DisplayFor(modelItem => item.news_post_time) </p>
+                <p>Last Edit:@Html.DisplayFor(modelItem => item.news_edit_time)</p>
+            </div>
+            <div class="news-brief">@Html.DisplayFor(modelItem => item.news_brief)</div>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = item.news_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.news_id })
+            </p>
+        </td>
+    </tr>
+}
+
+</table>

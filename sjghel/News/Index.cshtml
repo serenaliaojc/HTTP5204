@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Sjghel_Project.Models.News>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+<h2>News</h2>
+
+<div class="row justify-content-center">
+    @using (Ajax.BeginForm("Search", "News",
+                new AjaxOptions
+                {
+                    HttpMethod = "Post",
+                    AllowCache = false,
+                    InsertionMode = InsertionMode.Replace,
+                    UpdateTargetId = "news-list"
+                }, new { id = "search_form", autocomplete = "off", @class= "input-group col-md-6" }))
+    {
+        @Html.AntiForgeryToken()
+        <input type="text" required="required" class="form-control" name="term" placeholder="Search News Title" />
+        <div class="input-group-append">
+            <input type="submit" value="Search" class="btn btn-outline-secondary" />
+        </div>
+    }
+</div>
+
+<div id="news-list" class="row">
+    @foreach (var item in Model)
+    {
+        <div class="news-article col-md-4">
+            <img src="~/Images/News/@item.news_pic_path" />
+            <h3>@Html.ActionLink(item.news_title, "Details", new { id = item.news_id })</h3>
+            <p>@item.news_post_time</p>
+            <div>@item.news_brief</div>
+        </div>
+        
+    }
+</div>

@@ -1,0 +1,29 @@
+﻿@model Sjghel_Project.Models.News
+
+@{
+    ViewBag.Title = Model.news_title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="news-details">
+    <article>
+        <h2>@Html.DisplayFor(model => model.news_title)</h2>
+        <div class="news-detail-brief">
+            <img src="~/Images/News/@Model.news_pic_path" />
+            <div>@Model.news_brief</div>
+        </div>
+        <div class="news-detail-time row">
+            <p class="col-md-6">Post Time: @Html.DisplayFor(model => model.news_post_time)</p>
+            <p class="col-md-6">Last Edit: @Html.DisplayFor(model => model.news_edit_time)</p">
+        </div>
+        <div class="news-detail-article">
+            @Html.Raw(Model.news_content)
+        </div>
+    </article>
+
+    <div class="section-footer">
+        @Html.ActionLink("Back to News", "Index", new { area = "" }, new { @class = "btn btn-custom-blue" })
+    </div>
+</div>
+
+
