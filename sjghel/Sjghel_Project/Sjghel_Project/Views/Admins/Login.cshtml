@@ -1,0 +1,56 @@
+﻿@model Sjghel_Project.Models.Admin
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin Login</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="container justify-content-center admin-login-page">
+
+        <main>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="row justify-content-center">
+                    <h1 class="col-md-6">Admin Login</h1>
+                </div>
+
+                <div class="row justify-content-center">
+                    <p class="text-danger col-md-6">@ViewBag.Message</p>
+                </div>
+
+                <div class="form-group row justify-content-center">
+                    @Html.LabelFor(u => u.admin_name, new { @class = "col-md-2 col-form-label" })
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(u => u.admin_name, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group row justify-content-center">
+                    @Html.LabelFor(u => u.admin_password, new { @class = "col-md-2 col-form-label" })
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(u => u.admin_password, new { type="password",@class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <input type="submit" class="btn btn-outline-dark" value="Login" />
+                </div>
+            }
+        </main>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

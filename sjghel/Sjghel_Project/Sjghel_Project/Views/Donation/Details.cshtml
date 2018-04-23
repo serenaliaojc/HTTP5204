@@ -1,0 +1,70 @@
+﻿@model Sjghel_Project.Models.Donation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CP3_DONATIONS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Donation_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Donation_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Message)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Payment_API)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Payment_API)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Payment_Method)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Payment_Method)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CP3_DONORS.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CP3_DONORS.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if (User.IsInRole("admin"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+        <span> | </span>
+    }
+    @Html.ActionLink("Back to List", "Index")
+</p>

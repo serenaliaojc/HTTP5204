@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HospitalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="admin_id" />
+          </Key>
+          <Property Name="admin_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="admin_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="admin_password" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="admin_role" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Donations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Donation_Date" Type="datetime" Nullable="false" />
+          <Property Name="Donor_Id" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="200" />
+          <Property Name="Payment_API" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Payment_Method" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Donors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="First_Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Last_Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="30" />
+          <Property Name="Province" Type="varchar" MaxLength="30" />
+          <Property Name="Postal_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Country" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="news_id" />
+          </Key>
+          <Property Name="news_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="news_post_time" Type="datetime" Nullable="false" />
+          <Property Name="news_edit_time" Type="datetime" Nullable="false" />
+          <Property Name="news_title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="news_brief" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="news_content" Type="varchar(max)" Nullable="false" />
+          <Property Name="news_pic_path" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Testimonial">
+          <Key>
+            <PropertyRef Name="testimonial_id" />
+          </Key>
+          <Property Name="testimonial_id" Type="int" Nullable="false" />
+          <Property Name="testimonial_title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="testimonial_description" Type="varchar(max)" Nullable="false" />
+          <Property Name="patient_name" Type="varchar" MaxLength="50" />
+          <Property Name="testimonial_image" Type="varchar" MaxLength="50" />
+          <Property Name="is_published" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Volunteer">
+          <Key>
+            <PropertyRef Name="VolunteerId" />
+          </Key>
+          <Property Name="VolunteerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Department" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Reason" Type="varchar(max)" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="DaysAvailable" Type="varchar" MaxLength="70" />
+          <Property Name="StartTime" Type="time" Precision="7" />
+          <Property Name="EndTime" Type="time" Precision="7" />
+        </EntityType>
+        <Association Name="FK__Donations__Donor__2610A626">
+          <End Role="Donors" Type="Self.Donors" Multiplicity="1" />
+          <End Role="Donations" Type="Self.Donations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Donations">
+              <PropertyRef Name="Donor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'volunteer_department_fk' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="volunteer_department_fk" />-->
+        <EntityContainer Name="HospitalModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Donations" EntityType="Self.Donations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Donors" EntityType="Self.Donors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Testimonial" EntityType="Self.Testimonial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Volunteer" EntityType="Self.Volunteer" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Donations__Donor__2610A626" Association="Self.FK__Donations__Donor__2610A626">
+            <End Role="Donors" EntitySet="Donors" />
+            <End Role="Donations" EntitySet="Donations" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HospitalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="admin_id" />
+          </Key>
+          <Property Name="admin_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="admin_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="admin_password" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="admin_role" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="news_id" />
+          </Key>
+          <Property Name="news_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="news_post_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="news_edit_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="news_title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="news_brief" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="news_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="news_pic_path" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Testimonial">
+          <Key>
+            <PropertyRef Name="testimonial_id" />
+          </Key>
+          <Property Name="testimonial_id" Type="Int32" Nullable="false" />
+          <Property Name="testimonial_title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="testimonial_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="patient_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="testimonial_image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="is_published" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Volunteer">
+          <Key>
+            <PropertyRef Name="VolunteerId" />
+          </Key>
+          <Property Name="VolunteerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="DaysAvailable" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="StartTime" Type="Time" Precision="7" />
+          <Property Name="EndTime" Type="Time" Precision="7" />
+        </EntityType>
+        <EntityContainer Name="HospitalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="News" EntityType="Self.News" />
+          <EntitySet Name="Testimonials" EntityType="Self.Testimonial" />
+          <EntitySet Name="Volunteers" EntityType="Self.Volunteer" />
+          <EntitySet Name="Donations" EntityType="HospitalModel.Donation" />
+          <EntitySet Name="Donors" EntityType="HospitalModel.Donor" />
+          <AssociationSet Name="FK__Donations__Donor__2610A626" Association="HospitalModel.FK__Donations__Donor__2610A626">
+            <End Role="Donor" EntitySet="Donors" />
+            <End Role="Donation" EntitySet="Donations" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Donation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Donation_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Donor_Id" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Message" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Payment_API" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Payment_Method" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Donor" Relationship="HospitalModel.FK__Donations__Donor__2610A626" FromRole="Donation" ToRole="Donor" />
+        </EntityType>
+        <EntityType Name="Donor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="First_Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Last_Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Province" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Postal_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Donations" Relationship="HospitalModel.FK__Donations__Donor__2610A626" FromRole="Donor" ToRole="Donation" />
+        </EntityType>
+        <Association Name="FK__Donations__Donor__2610A626">
+          <End Type="HospitalModel.Donor" Role="Donor" Multiplicity="1" />
+          <End Type="HospitalModel.Donation" Role="Donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Donation">
+              <PropertyRef Name="Donor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HospitalModelStoreContainer" CdmEntityContainer="HospitalEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="HospitalModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+                <ScalarProperty Name="admin_name" ColumnName="admin_name" />
+                <ScalarProperty Name="admin_password" ColumnName="admin_password" />
+                <ScalarProperty Name="admin_role" ColumnName="admin_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="HospitalModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="HospitalModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="news_pic_path" ColumnName="news_pic_path" />
+                <ScalarProperty Name="news_id" ColumnName="news_id" />
+                <ScalarProperty Name="news_post_time" ColumnName="news_post_time" />
+                <ScalarProperty Name="news_edit_time" ColumnName="news_edit_time" />
+                <ScalarProperty Name="news_title" ColumnName="news_title" />
+                <ScalarProperty Name="news_brief" ColumnName="news_brief" />
+                <ScalarProperty Name="news_content" ColumnName="news_content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Testimonials">
+            <EntityTypeMapping TypeName="HospitalModel.Testimonial">
+              <MappingFragment StoreEntitySet="Testimonial">
+                <ScalarProperty Name="testimonial_id" ColumnName="testimonial_id" />
+                <ScalarProperty Name="testimonial_title" ColumnName="testimonial_title" />
+                <ScalarProperty Name="testimonial_description" ColumnName="testimonial_description" />
+                <ScalarProperty Name="patient_name" ColumnName="patient_name" />
+                <ScalarProperty Name="testimonial_image" ColumnName="testimonial_image" />
+                <ScalarProperty Name="is_published" ColumnName="is_published" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Volunteers">
+            <EntityTypeMapping TypeName="HospitalModel.Volunteer">
+              <MappingFragment StoreEntitySet="Volunteer">
+                <ScalarProperty Name="VolunteerId" ColumnName="VolunteerId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="DaysAvailable" ColumnName="DaysAvailable" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Donations">
+            <EntityTypeMapping TypeName="HospitalModel.Donation">
+              <MappingFragment StoreEntitySet="Donations">
+                <ScalarProperty Name="Payment_Method" ColumnName="Payment_Method" />
+                <ScalarProperty Name="Payment_API" ColumnName="Payment_API" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Donor_Id" ColumnName="Donor_Id" />
+                <ScalarProperty Name="Donation_Date" ColumnName="Donation_Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Donors">
+            <EntityTypeMapping TypeName="HospitalModel.Donor">
+              <MappingFragment StoreEntitySet="Donors">
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Postal_Code" ColumnName="Postal_Code" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

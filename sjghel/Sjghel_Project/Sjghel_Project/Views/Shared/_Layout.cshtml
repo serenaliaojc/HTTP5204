@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - St. Joseph's General Hospital</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+</head>
+<body>
+    <div id="sjghel_public">
+
+        <header>
+            @*<div class="main-nav">
+                <div class="container">
+                    <img class="main-logo" src="~/Images/sjghel_logo.png" />
+                    <h1>St. Joseph's <br /> General Hospital</h1>
+                </div>
+            </div>*@
+            <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #222546;">
+                <div class="container">
+                    @Html.ActionLink("St. Joseph's General Hospital", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("News", "Index", "News", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("Donation", "Create", "Donation", new { area = "" }, new { @class = "nav-link" })</li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <div class="container">
+                @RenderBody()
+            </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-4 col-lg-4">
+
+                        <div class="container-fluid footer-header">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-4">
+                                    <img class="main-logo" src="~/Images/sjghel_logo.png" />
+                                </div>
+                                <p class="col-8">St. Joseph's <br /> General Hospital</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info">
+                            <p>70 Spine Rd</p>
+                            <p>Elliot Lake</p>
+                            <p>ON P5A 1X2</p>
+                            <p>+1 (705) 848 7182</p>
+                            <p><a href="#">View Map</a></p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-2 order-12" hidden="hidden">
+                        <p>70 Spine Rd, Elliot Lake, ON P5A 1X2</p>
+                        <p>+1 (705) 848 7182 <a href="#">View Map</a></p>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-2">
+                        <ul class="footer-menu">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Patients</a></li>
+                            <li><a href="#">Visitors</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-2">
+                        <ul>
+                            <li>Info</li>
+                            <li><a href="#">Who We Are</a></li>
+                            <li><a href="#">Doctor Info</a></li>
+                            <li><a href="#">Board of Trustees</a></li>
+                            <li><a href="#">Recent News</a></li>
+                            <li><a href="#">Parking Info</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-2">
+                        <ul>
+                            <li>Accountability</li>
+                            <li><a href="#">Accountability Documents</a></li>
+                            <li><a href="#">Accountability Policy</a></li>
+                            <li><a href="#">BPSAA Expense Reporting</a></li>
+                            <li><a href="#">Board Reports</a></li>
+                            <li><a href="#">Quality Improvement Plans</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Use</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-2">
+                        @Html.ActionLink("Stuff Portal", "Index", "Admins", new { area = "" }, new { @class = "btn btn-light btn-custom-white" })
+                        @*<button class="btn btn-light btn-custom-white">Stuff Portal</button>*@
+                        <button class="btn btn-light btn-custom-pink">Donate</button>
+                    </div>
+                </div>
+
+                <div class="row justify-content-end">
+                    <ul class="social-media">
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fab fa-google"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                    </ul>
+                </div>
+                @*<p>&copy; @DateTime.Now.Year - St. Joseph's General Hospital</p>
+                <p class="admin-login">@Html.ActionLink("Admin Login", "Index", "Admins", new { area = "" }, new { @class = "btn btn-sm btn-outline-dark" })</p>*@
+            </div>
+        </footer>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/Site.js"></script>
+</body>
+</html>

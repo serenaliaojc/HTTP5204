@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - St. Joseph's General Hospital</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #444da1;">
+            <div class="container">
+                @Html.ActionLink("St. Joseph's General Hospital", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">@Html.ActionLink("Home", "Index", "Admins", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("News", "Admin", "News", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Donation", "Index", "Donation", new { area = "" }, new { @class = "nav-link" })</li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <main>
+            @RenderBody()
+        </main>
+
+        <footer>
+            <p>&copy; @DateTime.Now.Year - St. Joseph's General Hospital</p>
+            <p class="admin-login">@Html.ActionLink("Logout", "Logout", "Admins", new { area = "" }, new { @class = "btn btn-sm btn-outline-dark" })</p>
+        </footer>
+
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script src="~/Scripts/Site.js"></script>
+</body>
+</html>
+
