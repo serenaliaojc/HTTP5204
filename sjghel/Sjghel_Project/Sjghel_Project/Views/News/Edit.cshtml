@@ -55,7 +55,8 @@
     <div class="form-group row">
         @Html.LabelFor(model => model.news_pic_path, htmlAttributes: new { @class = "col-md-2 col-form-label" })
         <div class="col-md-5">
-            @Html.TextBoxFor(model => model.news_pic_path, new { type = "hidden" })
+            @Html.TextBoxFor(model => model.news_pic_path)
+            @Html.ValidationMessageFor(model => model.news_pic_path, "", new { @class = "form-text text-danger" })
             <div class="input-group">
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="news_pic" name="news_pic" />

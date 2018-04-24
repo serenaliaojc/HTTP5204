@@ -174,10 +174,10 @@ namespace Sjghel_Project.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "grand_admin, news_editor")]
-        public ActionResult Edit([Bind(Include = "news_id,news_post_time,news_edit_time,news_title,news_brief,news_content")] News news, HttpPostedFileBase news_pic)
+        public ActionResult Edit([Bind(Include = "news_id,news_post_time,news_edit_time,news_title,news_brief,news_content,news_pic_path")] News news, HttpPostedFileBase news_pic)
         {
-            try
-            {
+            //try
+            //{
                 if (ModelState.IsValid)
                 {
                     if (news_pic != null)
@@ -196,28 +196,28 @@ namespace Sjghel_Project.Controllers
 
                         news_pic.SaveAs(filePathOnServer);
                         news.news_pic_path = imgName;
-                    }
+                    } 
                     news.news_edit_time = DateTime.Now;
                     db.Entry(news).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Details", new { id = news.news_id });
                 }
                 return View(news);
-            }
-            catch (DbUpdateException DbException)
-            {
-                ViewBag.DbExceptionMessage = ErrorHandler.DbUpdateHandler(DbException);
-            }
-            catch (SqlException sqlException)
-            {
-                ViewBag.SqlExceptionMessage = sqlException.Message;
-            }
-            catch (Exception exception)
-            {
-                ViewBag.ExceptionMessage = exception.Message;
-            }
+            //}
+            //catch (DbUpdateException DbException)
+            //{
+            //    ViewBag.DbExceptionMessage = ErrorHandler.DbUpdateHandler(DbException);
+            //}
+            //catch (SqlException sqlException)
+            //{
+            //    ViewBag.SqlExceptionMessage = sqlException.Message;
+            //}
+            //catch (Exception exception)
+            //{
+            //    ViewBag.ExceptionMessage = exception.Message;
+            //}
 
-            return View("~/Views/Shared/Error.cshtml");
+            //return View("~/Views/Shared/Error.cshtml");
         }
 
         // GET: News/Delete/5

@@ -37,6 +37,7 @@ namespace Sjghel_Project.Models
         public string news_content { get; set; }
 
         [Display(Name = "News Picture")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "No picture.")]
         public string news_pic_path { get; set; }
     }
 
